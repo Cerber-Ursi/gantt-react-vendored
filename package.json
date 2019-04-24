@@ -1,7 +1,7 @@
 {
-    "name": "gantt-for-react-typescript",
+    "name": "gantt-react-typescript-vendored",
     "version": "0.3.3",
-    "description": "Frappe Gantt components for React wrapper.",
+    "description": "Frappe Gantt components for React wrapper, using whatever Frappe Gantt instance is passed in",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "scripts": {
@@ -11,7 +11,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/cerberuser/gantt-for-react.git"
+        "url": "https://github.com/cerberuser/gantt-react-typescript-vendored.git"
     },
     "keywords": [
         "react",
@@ -25,11 +25,10 @@
     ],
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/cerberuser/gantt-for-react/issues"
+        "url": "https://github.com/cerberuser/gantt-react-typescript-vendored/issues"
     },
-    "homepage": "https://github.com/cerberuser/gantt-for-react",
+    "homepage": "https://github.com/cerberuser/gantt-react-typescript-vendored",
     "dependencies": {
-        "frappe-gantt": "0.3.0",
         "size-sensor": "0.2.3"
     },
     "devDependencies": {

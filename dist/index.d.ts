@@ -1,6 +1,6 @@
-import { IOptions, ITask } from 'frappe-gantt';
 import * as React from 'react';
 export interface IProps extends Partial<IOptions> {
+    renderer: typeof Gantt;
     tasks: ITask[];
 }
 export default class ReactGantt extends React.Component<IProps> {
@@ -12,7 +12,6 @@ export default class ReactGantt extends React.Component<IProps> {
     render(): JSX.Element;
     /**
      * render the gantt chart
-     * @returns {GanttJS}
      */
     private renderFrappeGanttDOM;
 }

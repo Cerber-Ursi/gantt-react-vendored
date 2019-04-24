@@ -1,14 +1,14 @@
-import GanttJS, { IOptions, ITask } from 'frappe-gantt';
 import * as React from 'react';
 import { bind, clear } from 'size-sensor';
 
 export interface IProps extends Partial<IOptions> {
+    renderer: typeof Gantt;
     tasks: ITask[];
 }
 
 export default class ReactGantt extends React.Component<IProps> {
     private ganttRef = React.createRef<SVGSVGElement>();
-    private ganttInst: GanttJS | null = null;
+    private ganttInst: Gantt | null = null;
 
     componentDidMount() {
         this.renderFrappeGanttDOM();
@@ -40,27 +40,29 @@ export default class ReactGantt extends React.Component<IProps> {
 
     /**
      * render the gantt chart
-     * @returns {GanttJS}
      */
-    private renderFrappeGanttDOM() {
+    private renderFrappeGanttDOM(): Gantt | null {
         // init the Gantt
         // if exist, return
         if (this.ganttInst) {
             return this.ganttInst;
         }
 
-        const {tasks, ...innerProps} = this.props;
+        if (this.ganttRef.current) {
+            const {tasks, ...innerProps} = this.props;
 
-        // when resize
-        bind(this.ganttRef.current as Element as HTMLElement, // hack to get around not-so-correct types
-            () => {
-                if (this.ganttInst) {
-                    this.ganttInst.refresh(this.props.tasks);
-                }
-            });
+            // when resize
+            bind(this.ganttRef.current as Element as HTMLElement, // hack to get around not-so-correct types
+                () => {
+                    if (this.ganttInst) {
+                        this.ganttInst.refresh(this.props.tasks);
+                    }
+                });
 
-        // new instance
-        this.ganttInst = new GanttJS(this.ganttRef.current!, tasks, innerProps);
-        return this.ganttInst;
+            // new instance
+            this.ganttInst = new this.props.renderer(this.ganttRef.current, tasks, innerProps);
+            return this.ganttInst;
+        }
+        return null;
     }
 }
