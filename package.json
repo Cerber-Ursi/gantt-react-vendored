@@ -1,6 +1,6 @@
 {
     "name": "gantt-react-typescript-vendored",
-    "version": "0.3.3",
+    "version": "0.3.4",
     "description": "Frappe Gantt components for React wrapper, using whatever Frappe Gantt instance is passed in",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -29,7 +29,7 @@
     },
     "homepage": "https://github.com/cerberuser/gantt-react-typescript-vendored",
     "dependencies": {
-        "size-sensor": "0.2.3"
+        "size-sensor": "0.2.4"
     },
     "devDependencies": {
         "rimraf": "2.6.3",

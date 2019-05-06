@@ -4,10 +4,11 @@ import { bind, clear } from 'size-sensor';
 export interface IProps extends Partial<IOptions> {
     renderer: typeof Gantt;
     tasks: ITask[];
+    svgRef?: React.RefObject<SVGSVGElement>;
 }
 
 export default class ReactGantt extends React.Component<IProps> {
-    private ganttRef = React.createRef<SVGSVGElement>();
+    private ganttRef = this.props.svgRef || React.createRef<SVGSVGElement>();
     private ganttInst: Gantt | null = null;
 
     componentDidMount() {
@@ -28,7 +29,7 @@ export default class ReactGantt extends React.Component<IProps> {
 
     componentWillUnmount() {
         if (this.ganttRef.current) {
-            clear(this.ganttRef.current as Element as HTMLElement); // hack to get around not-so-correct types
+            clear(this.ganttRef.current);
         }
     }
 
@@ -52,7 +53,7 @@ export default class ReactGantt extends React.Component<IProps> {
             const {tasks, ...innerProps} = this.props;
 
             // when resize
-            bind(this.ganttRef.current as Element as HTMLElement, // hack to get around not-so-correct types
+            bind(this.ganttRef.current,
                 () => {
                     if (this.ganttInst) {
                         this.ganttInst.refresh(this.props.tasks);
